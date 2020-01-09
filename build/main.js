@@ -8,7 +8,13 @@ var apollo_server_express_1 = require("apollo-server-express");
 var typeDefs_1 = require("./typeDefs");
 var resolvers_1 = require("./resolvers");
 require('dotenv').config();
-var apolloServer = new apollo_server_express_1.ApolloServer({ typeDefs: typeDefs_1.typeDefs, resolvers: resolvers_1.resolvers });
+var apolloServer = new apollo_server_express_1.ApolloServer({
+    typeDefs: typeDefs_1.typeDefs,
+    resolvers: resolvers_1.resolvers,
+    /** It enables the GraphQL Playgroind in production */
+    introspection: true,
+    playground: true
+});
 var app = express_1.default();
 var port = process.env.PORT || 4000;
 apolloServer.applyMiddleware({ app: app });

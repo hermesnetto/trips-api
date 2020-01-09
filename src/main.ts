@@ -6,7 +6,13 @@ import { resolvers } from './resolvers';
 
 require('dotenv').config();
 
-const apolloServer = new ApolloServer({ typeDefs, resolvers });
+const apolloServer = new ApolloServer({
+  typeDefs,
+  resolvers,
+  /** It enables the GraphQL Playgroind in production */
+  introspection: true,
+  playground: true
+});
 const app = express();
 const port = process.env.PORT || 4000;
 
