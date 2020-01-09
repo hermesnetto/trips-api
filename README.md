@@ -7,7 +7,7 @@
 - [x] Create repository
 - [x] Choose a Nodejs framework to use
 - [x] Create server
-- [ ] Host the server on Heroku/other
+- [x] Host the app on Heroku
 - [ ] Set up database
 - [ ] Create model for User
 - [ ] Set up authentication with jwt token
