@@ -7,9 +7,9 @@
     "start:build": "tsc -w",
     "start:run": "nodemon build/main.js",
     "start": "concurrently npm:start:*",
-    "build:build": "tsc --prod",
+    "build:build": "tsc",
     "build:run": "nodemon build/main.js",
-    "build": "concurrently npm:prod:*"
+    "build": "concurrently npm:build:*"
   },
   "repository": {
     "type": "git",
