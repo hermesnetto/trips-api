@@ -17,6 +17,9 @@
   "bugs": {
     "url": "https://github.com/hermesnetto/trips-api/issues"
   },
+  "engines": {
+    "node": "10.x"
+  },
   "homepage": "https://github.com/hermesnetto/trips-api#readme",
   "dependencies": {
     "apollo-server": "^2.9.15",
