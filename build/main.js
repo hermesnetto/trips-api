@@ -10,7 +10,6 @@ var resolvers_1 = require("./resolvers");
 require('dotenv').config();
 var apolloServer = new apollo_server_express_1.ApolloServer({ typeDefs: typeDefs_1.typeDefs, resolvers: resolvers_1.resolvers });
 var app = express_1.default();
+var port = process.env.PORT || 4000;
 apolloServer.applyMiddleware({ app: app });
-app.listen({ port: process.env.PORT || 4000 }, function () {
-    return console.log("\uD83D\uDE80 GraphQL Server ready at http://localhost:4000" + apolloServer.graphqlPath);
-});
+app.listen({ port: port }, function () { return console.log("\uD83D\uDE80 GraphQL Server ready at port: " + port); });

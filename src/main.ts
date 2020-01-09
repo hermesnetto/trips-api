@@ -8,9 +8,8 @@ require('dotenv').config();
 
 const apolloServer = new ApolloServer({ typeDefs, resolvers });
 const app = express();
+const port = process.env.PORT || 4000;
 
 apolloServer.applyMiddleware({ app });
 
-app.listen({ port: process.env.PORT || 4000 }, () =>
-  console.log(`🚀 GraphQL Server ready at http://localhost:4000${apolloServer.graphqlPath}`)
-);
+app.listen({ port }, () => console.log(`🚀 GraphQL Server ready at port: ${port}`));

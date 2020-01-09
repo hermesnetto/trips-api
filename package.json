@@ -4,12 +4,11 @@
   "description": "Organize trips with your friends - API only",
   "main": "build/main.js",
   "scripts": {
+    "build:run": "nodemon build/main.js",
+    "build": "tsc",
     "start:build": "tsc -w",
     "start:run": "nodemon build/main.js",
-    "start": "concurrently npm:start:*",
-    "build:build": "tsc",
-    "build:run": "nodemon build/main.js",
-    "build": "concurrently npm:build:*"
+    "start": "concurrently npm:start:*"
   },
   "repository": {
     "type": "git",
