@@ -9,7 +9,7 @@
 - [x] Create server
 - [x] Host the app on Heroku
 - [x] Set up database
-- [ ] Create model for User
+- [x] Create model the initial Entities
 - [ ] Set up authentication with jwt token
 - [ ] Set up GraphQL
 

@@ -4,21 +4,33 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
-  ManyToMany
+  OneToMany
 } from 'typeorm';
+
 import { Event } from './Event';
 
 @Entity()
-export class User {
+export class Location {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
-  firstName: string;
+  zipcode: number;
 
   @Column()
-  lastName: string;
+  street: string;
+
+  @Column()
+  number: number;
+
+  @Column()
+  city: string;
+
+  @Column()
+  state: string;
+
+  @Column()
+  country: string;
 
   @CreateDateColumn()
   createdAt: Date;
@@ -28,7 +40,13 @@ export class User {
 
   @OneToMany(
     type => Event,
-    event => event.user
+    event => event.meetingPlace
   )
-  events: Event[];
+  eventsMeeting: Event[];
+
+  @OneToMany(
+    type => Event,
+    event => event.destiny
+  )
+  eventsDestiny: Event[];
 }
