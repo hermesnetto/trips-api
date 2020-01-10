@@ -1,7 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.resolvers = {
+export var resolvers = {
     Query: {
         hello: function () { return 'Hello world!'; }
     }
 };
+//# sourceMappingURL=index.js.map

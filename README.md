@@ -8,7 +8,7 @@
 - [x] Choose a Nodejs framework to use
 - [x] Create server
 - [x] Host the app on Heroku
-- [ ] Set up database
+- [x] Set up database
 - [ ] Create model for User
 - [ ] Set up authentication with jwt token
 - [ ] Set up GraphQL
