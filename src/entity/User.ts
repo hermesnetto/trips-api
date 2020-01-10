@@ -5,8 +5,11 @@ import {
   CreateDateColumn,
   UpdateDateColumn,
   OneToMany,
-  ManyToMany
+  BeforeInsert,
+  BeforeUpdate
 } from 'typeorm';
+import bcrypt from 'bcryptjs';
+
 import { Event } from './Event';
 
 @Entity()
@@ -20,6 +23,12 @@ export class User {
   @Column()
   lastName: string;
 
+  @Column()
+  email: string;
+
+  @Column()
+  password: string;
+
   @CreateDateColumn()
   createdAt: Date;
 
@@ -31,4 +40,20 @@ export class User {
     event => event.user
   )
   events: Event[];
+
+  @BeforeInsert()
+  async insertPasswordHash() {
+    this.password = await bcrypt.hash(this.password, 8);
+  }
+
+  @BeforeInsert()
+  async insertDates() {
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+  }
+
+  @BeforeUpdate()
+  async updateDates() {
+    this.updatedAt = new Date();
+  }
 }
