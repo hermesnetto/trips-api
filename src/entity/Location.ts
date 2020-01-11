@@ -4,7 +4,9 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany
+  OneToMany,
+  BeforeInsert,
+  BeforeUpdate,
 } from 'typeorm';
 
 import { Event } from './Event';
@@ -15,13 +17,16 @@ export class Location {
   id: number;
 
   @Column()
-  zipcode: number;
+  zipcode: string;
 
   @Column()
   street: string;
 
   @Column()
   number: number;
+
+  @Column()
+  district: string;
 
   @Column()
   city: string;
@@ -49,4 +54,15 @@ export class Location {
     event => event.destiny
   )
   eventsDestiny: Event[];
+
+  @BeforeInsert()
+  async insertDates() {
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+  }
+
+  @BeforeUpdate()
+  async updateDates() {
+    this.updatedAt = new Date();
+  }
 }

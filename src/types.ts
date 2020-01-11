@@ -30,6 +30,19 @@ export interface GqlUser {
   // events: [Event]
 }
 
+export interface GqlLocation {
+  id: number;
+  zipcode: string;
+  street: string;
+  number: number;
+  city: string;
+  state: string;
+  country: string;
+  district: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
 export interface GqlToken {
   token: string;
 }
