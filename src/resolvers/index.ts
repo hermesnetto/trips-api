@@ -1,10 +1,15 @@
-import { UserMutations } from './user/mutations';
+import { UserMutations, UserQueries } from './user';
 
 export const resolvers = {
   Query: {
-    hello: () => 'Hello world!'
+    ...UserQueries,
   },
   Mutation: {
-    ...UserMutations
-  }
+    ...UserMutations,
+  },
+  MutationResponse: {
+    __resolveType(): null {
+      return null;
+    },
+  },
 };

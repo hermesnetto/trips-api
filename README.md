@@ -10,18 +10,13 @@
 - [x] Host the app on Heroku
 - [x] Set up database
 - [x] Create model the initial Entities
-- [ ] Set up authentication with jwt token
-- [ ] Set up GraphQL
+- [x] Set up GraphQL
+- [x] Set up authentication with jwt token
 
-## Create Entities
+## Create Entities/Types
 
-- [ ] Create Trip table
-- [ ] Create Trip Type/Queries/Mutations
-- [ ] Create Media table
-- [ ] Create Media Type/Queries/Mutations
-- [ ] Create Chat
-- [ ] Create Chat Type/Queries/Mutations
-- [ ] Create List
-- [ ] Create List Type/Queries/Mutations
-- [ ] Create Notification
-- [ ] Create Notification Type/Queries/Mutations
+- [ ] Create Trip Table/Type/Queries/Mutations
+- [ ] Create Media Table/Type/Queries/Mutations
+- [ ] Create Chat Table/Type/Queries/Mutations
+- [ ] Create List Table/Type/Queries/Mutations
+- [ ] Create Notification Table/Type/Queries/Mutations
