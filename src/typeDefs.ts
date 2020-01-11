@@ -25,12 +25,12 @@ export const typeDefs = gql`
 
   type Mutation {
     # User
-    createUser(input: CreateUserInput): CreateUserResponse
+    signUp(input: SignUpInput): SignUpResponse
     login(input: LoginInput): LoginResponse
   }
 
   # Inputs
-  input CreateUserInput {
+  input SignUpInput {
     firstName: String!
     lastName: String
     email: String!
@@ -48,7 +48,7 @@ export const typeDefs = gql`
     message: String!
   }
 
-  type CreateUserResponse implements MutationResponse {
+  type SignUpResponse implements MutationResponse {
     success: Boolean!
     message: String!
     data: User

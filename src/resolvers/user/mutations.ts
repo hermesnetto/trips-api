@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import { Args, Ctx, GqlUser, GqlToken, MutationResponse } from '../../types';
 import { User } from '../../entity/User';
 
-interface CreateUserInput {
+interface SignUpInput {
   firstName: string;
   lastName?: string;
   email: string;
@@ -17,11 +17,7 @@ interface LoginInput {
 }
 
 export const UserMutations = {
-  async createUser(
-    _root: {},
-    args: Args<CreateUserInput>,
-    ctx: Ctx
-  ): Promise<MutationResponse<GqlUser>> {
+  async signUp(_root: {}, args: Args<SignUpInput>, ctx: Ctx): Promise<MutationResponse<GqlUser>> {
     const { input } = args;
     const { manager, formatResponse } = ctx;
 
