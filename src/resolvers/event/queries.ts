@@ -7,6 +7,6 @@ export const EventQueries = {
 
     if (!user) return;
 
-    return await manager.find(Event, { relations: ['members', 'user'] });
+    return await manager.find(Event, { relations: ['members', 'user', 'meetingPlace', 'destiny'] });
   },
 };
