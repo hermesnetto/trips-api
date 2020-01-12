@@ -6,7 +6,11 @@ import {
   UpdateDateColumn,
   ManyToOne,
   JoinTable,
-  ManyToMany
+  ManyToMany,
+  BeforeInsert,
+  BeforeUpdate,
+  OneToOne,
+  JoinColumn,
 } from 'typeorm';
 
 import { Location } from './Location';
@@ -32,31 +36,42 @@ export class Event {
   @Column()
   returnDate: Date;
 
-  @ManyToOne(
-    type => Location,
-    location => location.eventsMeeting
-  )
+  @OneToOne(() => Location)
+  @JoinColumn()
   meetingPlace: Location;
 
-  @ManyToOne(
-    type => Location,
-    location => location.eventsDestiny
-  )
+  @OneToOne(() => Location)
+  @JoinColumn()
   destiny: Location;
 
   @ManyToOne(
-    type => User,
-    user => user.events
+    () => User,
+    (user: User) => user.events
   )
+  @JoinColumn()
   user: User;
 
-  @ManyToMany(type => User)
+  @ManyToMany(
+    () => User,
+    (user: User) => user.eventMembers
+  )
   @JoinTable()
-  attendees: User[];
+  members: User[];
 
   @CreateDateColumn()
   createdAt: Date;
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @BeforeInsert()
+  async insertDates() {
+    this.createdAt = new Date();
+    this.updatedAt = new Date();
+  }
+
+  @BeforeUpdate()
+  async updateDates() {
+    this.updatedAt = new Date();
+  }
 }

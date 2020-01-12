@@ -1,11 +1,11 @@
 import { User } from '../../entity/User';
 
-import { Ctx, GqlUser } from '../../types';
+import { Ctx } from '../../types';
 
 export const UserQueries = {
-  async me(_root: {}, _args: {}, ctx: Ctx): Promise<GqlUser | null> {
+  async me(_root: {}, _args: {}, ctx: Ctx): Promise<User | null> {
     const { manager, user } = ctx;
-    let me: GqlUser;
+    let me: User;
 
     if (!user) return null;
 

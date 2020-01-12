@@ -4,7 +4,6 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
   BeforeInsert,
   BeforeUpdate,
 } from 'typeorm';
@@ -42,18 +41,6 @@ export class Location {
 
   @UpdateDateColumn()
   updatedAt: Date;
-
-  @OneToMany(
-    type => Event,
-    event => event.meetingPlace
-  )
-  eventsMeeting: Event[];
-
-  @OneToMany(
-    type => Event,
-    event => event.destiny
-  )
-  eventsDestiny: Event[];
 
   @BeforeInsert()
   async insertDates() {

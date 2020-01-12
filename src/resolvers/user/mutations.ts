@@ -1,7 +1,7 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 
-import { Args, Ctx, GqlUser, GqlToken, MutationResponse } from '../../types';
+import { Args, Ctx, GqlToken, MutationResponse } from '../../types';
 import { User } from '../../entity/User';
 
 interface SignUpInput {
@@ -17,7 +17,7 @@ interface LoginInput {
 }
 
 export const UserMutations = {
-  async signUp(_root: {}, args: Args<SignUpInput>, ctx: Ctx): Promise<MutationResponse<GqlUser>> {
+  async signUp(_root: {}, args: Args<SignUpInput>, ctx: Ctx): Promise<MutationResponse<User>> {
     const { input } = args;
     const { manager, formatResponse } = ctx;
 
@@ -31,7 +31,7 @@ export const UserMutations = {
     }
 
     try {
-      await manager.save(user);
+      await manager.insert(User, user);
     } catch (e) {
       return formatResponse(false, 'Email already registered!');
     }
@@ -45,7 +45,7 @@ export const UserMutations = {
     } = args;
     const { manager, formatResponse } = ctx;
 
-    let user;
+    let user: User;
     const failMessage = 'Could not login, check your email and password!';
 
     try {

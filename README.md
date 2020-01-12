@@ -16,7 +16,7 @@
 ## Create Entities/Types
 
 - [x] Create Location Table/Type/Queries/Mutations
-- [ ] Create Trip Table/Type/Queries/Mutations
+- [ ] Create Event Table/Type/Queries/Mutations
 - [ ] Create Media Table/Type/Queries/Mutations
 - [ ] Create Chat Table/Type/Queries/Mutations
 - [ ] Create List Table/Type/Queries/Mutations

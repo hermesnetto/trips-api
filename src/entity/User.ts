@@ -7,6 +7,7 @@ import {
   OneToMany,
   BeforeInsert,
   BeforeUpdate,
+  ManyToMany,
 } from 'typeorm';
 import bcrypt from 'bcryptjs';
 
@@ -20,7 +21,7 @@ export class User {
   @Column()
   firstName: string;
 
-  @Column()
+  @Column({ nullable: true })
   lastName: string;
 
   @Column({ unique: true })
@@ -36,10 +37,16 @@ export class User {
   updatedAt: Date;
 
   @OneToMany(
-    type => Event,
-    event => event.user
+    () => Event,
+    (event: Event) => event.user
   )
   events: Event[];
+
+  @ManyToMany(
+    () => Event,
+    (event: Event) => event.members
+  )
+  eventMembers: Event[];
 
   @BeforeInsert()
   async insertPasswordHash() {

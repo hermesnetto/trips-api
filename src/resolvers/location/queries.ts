@@ -1,4 +1,4 @@
-import { GqlLocation, Ctx } from '../../types';
+import { Ctx } from '../../types';
 import { Location } from '../../entity/Location';
 
 interface LocationInput {
@@ -6,12 +6,11 @@ interface LocationInput {
 }
 
 export const LocationQueries = {
-  async location(_root: {}, args: LocationInput, ctx: Ctx): Promise<GqlLocation | undefined> {
+  async location(_root: {}, args: LocationInput, ctx: Ctx): Promise<Location | undefined> {
     const { manager, user } = ctx;
 
     if (!user) return;
 
-    const location = await manager.findOne(Location, { id: args.id });
-    return location;
+    return await manager.findOne(Location, { id: args.id });
   },
 };

@@ -20,28 +20,6 @@ export interface MutationResponse<T> {
 /**
  * GraphQl Models
  */
-export interface GqlUser {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-  createdAt: Date;
-  updatedAt: Date;
-  // events: [Event]
-}
-
-export interface GqlLocation {
-  id: number;
-  zipcode: string;
-  street: string;
-  number: number;
-  city: string;
-  state: string;
-  country: string;
-  district: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
 
 export interface GqlToken {
   token: string;

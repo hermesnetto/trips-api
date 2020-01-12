@@ -1,4 +1,4 @@
-import { Args, Ctx, MutationResponse, GqlLocation } from '../../types';
+import { Args, Ctx, MutationResponse } from '../../types';
 import { Location } from '../../entity/Location';
 
 interface CreateLocationInput {
@@ -16,7 +16,7 @@ export const LocationMutations = {
     _root: {},
     args: Args<CreateLocationInput>,
     ctx: Ctx
-  ): Promise<MutationResponse<GqlLocation>> {
+  ): Promise<MutationResponse<Location>> {
     const { input } = args;
     const { manager, user, formatResponse } = ctx;
 
@@ -34,7 +34,7 @@ export const LocationMutations = {
     loc.district = input.district;
 
     try {
-      await manager.save(loc);
+      await manager.insert(Location, loc);
     } catch (e) {
       return formatResponse(false, 'Could not save location, please, try again later!');
     }
