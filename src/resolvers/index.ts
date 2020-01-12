@@ -1,4 +1,4 @@
-import { UserMutations, UserQueries, UserFields } from './user';
+import { UserMutations, UserQueries } from './user';
 import { LocationMutations, LocationQueries } from './location';
 import { EventMutations, EventQueries } from './event';
 
@@ -18,5 +18,4 @@ export const resolvers = {
       return null;
     },
   },
-  ...UserFields,
 };

@@ -10,7 +10,11 @@ export const UserQueries = {
     if (!user) return null;
 
     try {
-      me = await manager.findOneOrFail(User, { id: user.id, email: user.email });
+      me = await manager.findOneOrFail(
+        User,
+        { id: user.id, email: user.email },
+        { relations: ['events'] }
+      );
     } catch (e) {
       return null;
     }
