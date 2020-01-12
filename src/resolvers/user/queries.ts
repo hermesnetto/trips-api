@@ -9,12 +9,11 @@ export const UserQueries = {
 
     if (!user) return null;
 
+    const userData = { id: user.id, email: user.email };
+    const userRelations = { relations: ['events'] };
+
     try {
-      me = await manager.findOneOrFail(
-        User,
-        { id: user.id, email: user.email },
-        { relations: ['events'] }
-      );
+      me = await manager.findOneOrFail(User, userData, userRelations);
     } catch (e) {
       return null;
     }

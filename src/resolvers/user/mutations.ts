@@ -60,7 +60,9 @@ export const UserMutations = {
       return formatResponse(false, failMessage);
     }
 
-    const token = jwt.sign({ email: user.email, id: user.id }, '@TripsPassword!!');
+    const token = jwt.sign({ email: user.email, id: user.id }, process.env.JWT_SECRET || '', {
+      expiresIn: 86400,
+    });
 
     return formatResponse(true, 'User successfully logged-in!', { token });
   },

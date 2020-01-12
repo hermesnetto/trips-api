@@ -22,12 +22,16 @@ createConnection()
       playground: true,
       context(ctx: ExpressContext) {
         const { req } = ctx;
-        const token = req.headers.authorization || '';
+        const tokenHeader = req.headers.authorization || '';
+        const token = tokenHeader.split(' ')[1];
         let user = null;
 
         try {
-          const result = jwt.verify(token.split(' ')[1], '@TripsPassword!!');
-          user = result as { id: number; email: string };
+          const result = jwt.verify(token, process.env.JWT_SECRET || '') as {
+            id: number;
+            email: string;
+          };
+          user = { ...result, token };
         } catch (e) {}
 
         return {
