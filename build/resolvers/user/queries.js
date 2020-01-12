@@ -1,15 +1,4 @@
 "use strict";
-var __assign = (this && this.__assign) || function () {
-    __assign = Object.assign || function(t) {
-        for (var s, i = 1, n = arguments.length; i < n; i++) {
-            s = arguments[i];
-            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
-                t[p] = s[p];
-        }
-        return t;
-    };
-    return __assign.apply(this, arguments);
-};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -46,50 +35,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-require("reflect-metadata");
-var express_1 = __importDefault(require("express"));
-var jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
-var apollo_server_express_1 = require("apollo-server-express");
-var typeorm_1 = require("typeorm");
-var typeDefs_1 = require("./typeDefs");
-var resolvers_1 = require("./resolvers");
-var utils_1 = require("./utils");
-require('dotenv').config();
-typeorm_1.createConnection()
-    .then(function (connection) { return __awaiter(void 0, void 0, void 0, function () {
-    var manager, apolloServer, app, port;
-    return __generator(this, function (_a) {
-        manager = connection.manager;
-        apolloServer = new apollo_server_express_1.ApolloServer({
-            typeDefs: typeDefs_1.typeDefs,
-            resolvers: resolvers_1.resolvers,
-            /** It enables the GraphQL Playgroind in production */
-            introspection: true,
-            playground: true,
-            context: function (ctx) {
-                var req = ctx.req;
-                var tokenHeader = req.headers.authorization || '';
-                var token = tokenHeader.split(' ')[1];
-                var user = null;
-                try {
-                    var result = jsonwebtoken_1.default.verify(token, process.env.JWT_SECRET || '');
-                    user = __assign(__assign({}, result), { token: token });
+var User_1 = require("../../entity/User");
+exports.UserQueries = {
+    me: function (_root, _args, ctx) {
+        return __awaiter(this, void 0, void 0, function () {
+            var manager, user, me, userData, userRelations, e_1;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0:
+                        manager = ctx.manager, user = ctx.user;
+                        if (!user)
+                            return [2 /*return*/, null];
+                        userData = { id: user.id, email: user.email };
+                        userRelations = { relations: ['events'] };
+                        _a.label = 1;
+                    case 1:
+                        _a.trys.push([1, 3, , 4]);
+                        return [4 /*yield*/, manager.findOneOrFail(User_1.User, userData, userRelations)];
+                    case 2:
+                        me = _a.sent();
+                        return [3 /*break*/, 4];
+                    case 3:
+                        e_1 = _a.sent();
+                        return [2 /*return*/, null];
+                    case 4: return [2 /*return*/, me];
                 }
-                catch (e) { }
-                return __assign(__assign({}, ctx), { user: user,
-                    manager: manager,
-                    formatResponse: utils_1.formatResponse });
-            },
+            });
         });
-        app = express_1.default();
-        port = process.env.PORT || 4000;
-        apolloServer.applyMiddleware({ app: app });
-        app.listen({ port: port }, function () { return console.log("\uD83D\uDE80 GraphQL Server ready at port: " + port); });
-        return [2 /*return*/];
-    });
-}); })
-    .catch(function (error) { return console.log(error); });
+    },
+};

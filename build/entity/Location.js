@@ -44,32 +44,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 var typeorm_1 = require("typeorm");
-var bcryptjs_1 = __importDefault(require("bcryptjs"));
-var Event_1 = require("./Event");
-var User = /** @class */ (function () {
-    function User() {
+var Location = /** @class */ (function () {
+    function Location() {
     }
-    User.prototype.insertPasswordHash = function () {
-        return __awaiter(this, void 0, void 0, function () {
-            var _a;
-            return __generator(this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = this;
-                        return [4 /*yield*/, bcryptjs_1.default.hash(this.password, 8)];
-                    case 1:
-                        _a.password = _b.sent();
-                        return [2 /*return*/];
-                }
-            });
-        });
-    };
-    User.prototype.insertDates = function () {
+    Location.prototype.insertDates = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 this.createdAt = new Date();
@@ -78,7 +58,7 @@ var User = /** @class */ (function () {
             });
         });
     };
-    User.prototype.updateDates = function () {
+    Location.prototype.updateDates = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 this.updatedAt = new Date();
@@ -89,60 +69,58 @@ var User = /** @class */ (function () {
     __decorate([
         typeorm_1.PrimaryGeneratedColumn(),
         __metadata("design:type", Number)
-    ], User.prototype, "id", void 0);
+    ], Location.prototype, "id", void 0);
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", String)
-    ], User.prototype, "firstName", void 0);
-    __decorate([
-        typeorm_1.Column({ nullable: true }),
-        __metadata("design:type", String)
-    ], User.prototype, "lastName", void 0);
-    __decorate([
-        typeorm_1.Column({ unique: true }),
-        __metadata("design:type", String)
-    ], User.prototype, "email", void 0);
+    ], Location.prototype, "zipcode", void 0);
     __decorate([
         typeorm_1.Column(),
         __metadata("design:type", String)
-    ], User.prototype, "password", void 0);
+    ], Location.prototype, "street", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", Number)
+    ], Location.prototype, "number", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Location.prototype, "district", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Location.prototype, "city", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Location.prototype, "state", void 0);
+    __decorate([
+        typeorm_1.Column(),
+        __metadata("design:type", String)
+    ], Location.prototype, "country", void 0);
     __decorate([
         typeorm_1.CreateDateColumn(),
         __metadata("design:type", Date)
-    ], User.prototype, "createdAt", void 0);
+    ], Location.prototype, "createdAt", void 0);
     __decorate([
         typeorm_1.UpdateDateColumn(),
         __metadata("design:type", Date)
-    ], User.prototype, "updatedAt", void 0);
-    __decorate([
-        typeorm_1.OneToMany(function () { return Event_1.Event; }, function (event) { return event.user; }),
-        __metadata("design:type", Array)
-    ], User.prototype, "events", void 0);
-    __decorate([
-        typeorm_1.ManyToMany(function () { return Event_1.Event; }, function (event) { return event.members; }),
-        __metadata("design:type", Array)
-    ], User.prototype, "eventMembers", void 0);
+    ], Location.prototype, "updatedAt", void 0);
     __decorate([
         typeorm_1.BeforeInsert(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
-    ], User.prototype, "insertPasswordHash", null);
-    __decorate([
-        typeorm_1.BeforeInsert(),
-        __metadata("design:type", Function),
-        __metadata("design:paramtypes", []),
-        __metadata("design:returntype", Promise)
-    ], User.prototype, "insertDates", null);
+    ], Location.prototype, "insertDates", null);
     __decorate([
         typeorm_1.BeforeUpdate(),
         __metadata("design:type", Function),
         __metadata("design:paramtypes", []),
         __metadata("design:returntype", Promise)
-    ], User.prototype, "updateDates", null);
-    User = __decorate([
+    ], Location.prototype, "updateDates", null);
+    Location = __decorate([
         typeorm_1.Entity()
-    ], User);
-    return User;
+    ], Location);
+    return Location;
 }());
-exports.User = User;
+exports.Location = Location;
